@@ -22,16 +22,31 @@ asyncHook.addHooks({
 asyncHook.enable()
 
 class Zone {
-  constructor (parent, name) {
+  constructor (parent, spec) {
     if (parent === null) {
       // root zone
       this._data = Object.create(null)
       this._name = '<root>'
       this._parent = null
     } else {
-      this._data = Object.create(parent.data)
-      this._name = name != null ? name : `${parent.name} child`
+      const data = this._data = Object.create(parent.data)
       this._parent = parent
+
+      let name
+      if (typeof spec === 'string') {
+        name = spec
+      } else if (spec != null) {
+        name = spec.name
+
+        const { properties } = spec
+        if (properties) {
+          for (const key in properties) {
+            data[key] = properties[key]
+          }
+        }
+      }
+
+      this._name = name || `${parent.name} child`
     }
   }
 
@@ -47,8 +62,8 @@ class Zone {
     return this._parent
   }
 
-  fork (name) {
-    return new Zone(this, name)
+  fork (spec) {
+    return new Zone(this, spec)
   }
 
   run (callback, thisArg, args) {
@@ -66,6 +81,21 @@ class Zone {
     return function (...args) {
       return zone.run(callback, this, args)
     }
+  }
+
+  // minimal zone.js compatibility
+
+  get (key) {
+    return this._data[key]
+  }
+
+  getZoneWith (key) {
+    if (Object.prototype.hasOwnProperty.call(this._data, key)) {
+      return this
+    }
+
+    const parent = this._parent
+    return parent && parent.getZoneWith(key)
   }
 }
 

@@ -22,11 +22,26 @@ describe('Zone', () => {
 
   describe('#fork()', () => {
     it('creates a new child zone', () => {
-      const child = root.fork('child zone')
-      expect(child.name).toBe('child zone')
+      const child = root.fork()
+      expect(child.name).toBe('<root> child')
       expect(child.parent).toBe(root)
       expect(child.data).toEqual({})
       expect(Object.getPrototypeOf(child.data)).toBe(root.data)
+    })
+
+    it('accepts a name param', () => {
+      expect(root.fork('child').name).toBe('child')
+    })
+
+    it('accepts a ZoneSpec param', () => {
+      const child = root.fork({
+        name: 'child',
+        properties: {
+          foo: 'bar'
+        }
+      })
+      expect(child.name).toBe('child')
+      expect(child.data).toEqual({ foo: 'bar' })
     })
   })
 
@@ -57,6 +72,29 @@ describe('Zone', () => {
           done()
         })
       })()
+    })
+  })
+
+  describe('#get()', () => {
+    it('returns a value associated with a key', () => {
+      root.data.root = 'foo'
+      const child = root.fork()
+      child.data.child = 'bar'
+
+      expect(child.get('root')).toBe('foo')
+      expect(child.get('child')).toBe('bar')
+    })
+  })
+
+  describe('#getZoneWith()', () => {
+    it('returns the zone which defines a key', () => {
+      root.data.root = 'foo'
+      const child = root.fork()
+      child.data.child = 'bar'
+
+      expect(child.getZoneWith('root')).toBe(root)
+      expect(child.getZoneWith('child')).toBe(child)
+      expect(child.getZoneWith('foo')).toBe(null)
     })
   })
 })
