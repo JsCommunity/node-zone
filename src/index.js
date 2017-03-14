@@ -26,7 +26,7 @@ class Zone {
     if (parent === null) {
       // root zone
       this._data = Object.create(null)
-      this._name = 'root'
+      this._name = '<root>'
       this._parent = null
     } else {
       this._data = Object.create(parent.data)
@@ -69,7 +69,7 @@ class Zone {
   }
 }
 
-current = new Zone(null, 'root')
+current = new Zone(null)
 
 module.exports = {
   get current () {

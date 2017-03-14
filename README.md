@@ -21,7 +21,7 @@ import { current } from 'node-zone'
 
 // a zone as a name, a parent, and data
 console.log(
-  current.name,   // root
+  current.name,   // <root>
   current.parent, // null
   current.data    // { __proto__: null }
 )
@@ -41,7 +41,7 @@ myZone.run(() => {
   })
 })
 
-console.log(current.name) // root
+console.log(current.name) // <root>
 ```
 
 ## Development

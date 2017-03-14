@@ -6,8 +6,8 @@ const root = current
 
 describe('Zone', () => {
   describe('root zone', () => {
-    it('has “root” name', () => {
-      expect(root.name).toBe('root')
+    it('has “<root>” name', () => {
+      expect(root.name).toBe('<root>')
     })
 
     it('has no parent', () => {
