@@ -21,27 +21,31 @@ import { current } from 'node-zone'
 
 // a zone as a name, a parent, and data
 console.log(
-  current.name,   // <root>
+  current.name,   // "<root>"
   current.parent, // null
   current.data    // { __proto__: null }
 )
 
 // create a new child zone
-//
-// data is prototypally inherited from parent zone
 const myZone = current.fork('my zone')
+
+console.log(
+  myZone.name,   // "my zone"
+  myZone.parent, // current
+  myZone.data    // { __proto__: current.data }
+)
 
 // run some code in it
 myZone.run(() => {
-  console.log(current.name) // my zone
+  console.log(current.name) // "my zone"
 
   // zone is preserved in async functions
   process.nextTick(() => {
-    console.log(current.name) // my zone
+    console.log(current.name) // "my zone"
   })
 })
 
-console.log(current.name) // <root>
+console.log(current.name) // "<root>"
 ```
 
 ## Development
