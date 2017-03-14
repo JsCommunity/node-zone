@@ -1,6 +1,6 @@
 {
   "name": "node-zone",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "ISC",
   "description": "minimal Zone implementation for Node",
   "keywords": [
