@@ -19,7 +19,7 @@ Installation of the [npm package](https://npmjs.org/package/node-zone):
 ```js
 import { current } from 'node-zone'
 
-// a zone as a name, a parent, and data
+// a zone has a name, a parent, and data
 console.log(
   current.name,   // "<root>"
   current.parent, // null
