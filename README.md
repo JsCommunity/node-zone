@@ -1,5 +1,7 @@
 # node-zone [![Build Status](https://travis-ci.org/JsCommunity/node-zone.png?branch=master)](https://travis-ci.org/JsCommunity/node-zone)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/JsCommunity/node-zone.svg)](https://greenkeeper.io/)
+
 > minimal Zone implementation for Node
 
 This implementation is based on the [experimental AsyncWrap API](https://github.com/nodejs/diagnostics/blob/master/tracing/AsyncWrap/README.md), but it seems to work fine.
