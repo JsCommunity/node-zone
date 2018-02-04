@@ -1,23 +1,23 @@
 const zones = Object.create(null)
 let current
 
-process.env.NODE_ASYNC_HOOK_NO_WARNING = '1'
-const asyncHook = require('async-hook')
-asyncHook.addHooks({
+// eslint-disable-next-line node/no-missing-require
+const asyncHooks = require('async_hooks')
+const asyncHook = asyncHooks.createHook({
   init (uid) {
     zones[uid] = current
   },
 
-  pre (uid) {
+  before (uid) {
     current = zones[uid]
   },
 
-  post (uid) {
+  after (uid) {
   },
 
   destroy (uid) {
     delete zones[uid]
-  }
+  },
 })
 asyncHook.enable()
 
@@ -104,5 +104,5 @@ current = new Zone(null)
 module.exports = {
   get current () {
     return current
-  }
+  },
 }

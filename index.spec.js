@@ -1,8 +1,8 @@
 /* eslint-env jest */
 
-import { current } from './'
+const Zone = require('./')
 
-const root = current
+const root = Zone.current
 
 describe('Zone', () => {
   describe('root zone', () => {
@@ -37,8 +37,8 @@ describe('Zone', () => {
       const child = root.fork({
         name: 'child',
         properties: {
-          foo: 'bar'
-        }
+          foo: 'bar',
+        },
       })
       expect(child.name).toBe('child')
       expect(child.data).toEqual({ foo: 'bar' })
@@ -50,10 +50,10 @@ describe('Zone', () => {
       const child = root.fork()
 
       child.run(() => {
-        expect(current).toBe(child)
+        expect(Zone.current).toBe(child)
 
         process.nextTick(() => {
-          expect(current).toBe(child)
+          expect(Zone.current).toBe(child)
           done()
         })
       })
@@ -65,10 +65,10 @@ describe('Zone', () => {
       const child = root.fork()
 
       child.wrap(() => {
-        expect(current).toBe(child)
+        expect(Zone.current).toBe(child)
 
         process.nextTick(() => {
-          expect(current).toBe(child)
+          expect(Zone.current).toBe(child)
           done()
         })
       })()
