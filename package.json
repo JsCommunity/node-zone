@@ -27,7 +27,7 @@
     "index.js"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=8.1.0"
   },
   "dependencies": {
     "async-hook": "^2.0.0"
@@ -35,6 +35,7 @@
   "devDependencies": {
     "cross-env": "^5.1.3",
     "eslint": "^5.10.0",
+    "eslint-config-prettier": "^3.3.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^8.0.0",
@@ -42,21 +43,29 @@
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^1.2.0",
     "jest": "^23.6.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3",
     "rimraf": "^2.6.1"
   },
   "scripts": {
     "dev-test": "jest --bail --watch",
-    "pretest": "eslint --ignore-path .gitignore --fix .",
     "test": "jest"
   },
   "husky": {
     "hooks": {
-      "commit-msg": "yarn test"
+      "pre-commit": "lint-staged"
     }
   },
   "jest": {
     "collectCoverage": true,
     "testEnvironment": "node",
     "testRegex": "\\.spec\\.js$"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add",
+      "eslint --ignore-pattern '!*''"
+    ]
   }
 }
