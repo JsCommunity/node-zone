@@ -1,7 +1,6 @@
 const zones = Object.create(null);
 let current;
 
-// eslint-disable-next-line node/no-missing-require
 const asyncHooks = require("async_hooks");
 const asyncHook = asyncHooks.createHook({
   init(uid) {
