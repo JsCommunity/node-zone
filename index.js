@@ -9,9 +9,18 @@ const asyncHook = asyncHooks.createHook({
 
   before(uid) {
     current = zones[uid];
-  },
 
-  after(uid) {},
+    // it appears `init` is not called when using the `cluster` module,
+    // therefore `zones[uid]` might not exist in `before`
+    //
+    // Work-around: set the current zone to the root zone, it's incorrect but it
+    // allows using root data and create new zones by forking.
+    //
+    // see https://github.com/JsCommunity/node-zone/issues/3
+    if (current !== undefined) {
+      current = root;
+    }
+  },
 
   destroy(uid) {
     delete zones[uid];
@@ -97,7 +106,7 @@ class Zone {
   }
 }
 
-current = new Zone(null);
+const root = (current = new Zone(null));
 
 module.exports = {
   get current() {

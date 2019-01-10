@@ -48,6 +48,11 @@ myZone.run(() => {
 console.log(current.name) // "<root>"
 ```
 
+> Note: There [is an issue](https://github.com/JsCommunity/node-zone/issues/3)
+> with Node cluster module, which prevents handlers created in workers to
+> properly access the current zone, `Zone.current` will be the root zone
+> instead.
+
 ## Development
 
 ```
