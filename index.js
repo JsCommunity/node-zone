@@ -1,33 +1,25 @@
 const zones = Object.create(null);
-const stack = [];
 let current;
 
 const asyncHooks = require("async_hooks");
 const asyncHook = asyncHooks.createHook({
-  // it appears `init` is not called when using the `cluster` module,
-  // therefore `zones[uid]` might not exist in `before`
-  //
-  // Work-around:
-  // 1. in `before`: save the current zone in a stack before changing interval
-  // 2. in `before`: don't change the zone if there is none available
-  // 3. in `after`: restore the previous zone from the stack
-  //
-  // see https://github.com/JsCommunity/node-zone/issues/3
-  init(uid, type, triggerId) {
+  init(uid) {
     zones[uid] = current;
   },
 
   before(uid) {
-    stack.push(current);
+    current = zones[uid];
 
-    const candidate = zones[uid];
-    if (candidate !== undefined) {
-      current = candidate;
+    // it appears `init` is not called when using the `cluster` module,
+    // therefore `zones[uid]` might not exist in `before`
+    //
+    // Work-around: set the current zone to the root zone, it's incorrect but it
+    // allows using root data and create new zones by forking.
+    //
+    // see https://github.com/JsCommunity/node-zone/issues/3
+    if (current !== undefined) {
+      current = root;
     }
-  },
-
-  after(uid) {
-    current = stack.pop();
   },
 
   destroy(uid) {
@@ -114,7 +106,7 @@ class Zone {
   }
 }
 
-current = new Zone(null);
+const root = (current = new Zone(null));
 
 module.exports = {
   get current() {
