@@ -17,7 +17,7 @@ const asyncHook = asyncHooks.createHook({
     // allows using root data and create new zones by forking.
     //
     // see https://github.com/JsCommunity/node-zone/issues/3
-    if (current !== undefined) {
+    if (current === undefined) {
       current = root;
     }
   },
