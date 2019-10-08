@@ -17,35 +17,35 @@ Installation of the [npm package](https://npmjs.org/package/node-zone):
 ## Usage
 
 ```js
-import { current } from 'node-zone'
+import { current } from "node-zone";
 
 // a zone has a name, a parent, and data
 console.log(
-  current.name,   // "<root>"
+  current.name, // "<root>"
   current.parent, // null
-  current.data    // { __proto__: null }
-)
+  current.data // { __proto__: null }
+);
 
 // create a new child zone
-const myZone = current.fork('my zone')
+const myZone = current.fork("my zone");
 
 console.log(
-  myZone.name,   // "my zone"
+  myZone.name, // "my zone"
   myZone.parent, // current
-  myZone.data    // { __proto__: current.data }
-)
+  myZone.data // { __proto__: current.data }
+);
 
 // run some code in it
 myZone.run(() => {
-  console.log(current.name) // "my zone"
+  console.log(current.name); // "my zone"
 
   // zone is preserved in async functions
   process.nextTick(() => {
-    console.log(current.name) // "my zone"
-  })
-})
+    console.log(current.name); // "my zone"
+  });
+});
 
-console.log(current.name) // "<root>"
+console.log(current.name); // "<root>"
 ```
 
 > Note: There [is an issue](https://github.com/JsCommunity/node-zone/issues/3)
@@ -74,7 +74,7 @@ console.log(current.name) // "<root>"
 
 ## Contributions
 
-Contributions are *very* welcomed, either on the documentation or on
+Contributions are _very_ welcomed, either on the documentation or on
 the code.
 
 You may:
