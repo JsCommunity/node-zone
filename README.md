@@ -1,4 +1,6 @@
-# node-zone [![Build Status](https://travis-ci.org/JsCommunity/node-zone.png?branch=master)](https://travis-ci.org/JsCommunity/node-zone)
+# node-zone
+
+[![Package Version](https://badgen.net/npm/v/node-zone)](https://npmjs.org/package/node-zone) [![Build Status](https://travis-ci.org/JsCommunity/node-zone.png?branch=master)](https://travis-ci.org/JsCommunity/node-zone) [![PackagePhobia](https://badgen.net/packagephobia/install/node-zone)](https://packagephobia.now.sh/result?p=node-zone) [![Latest Commit](https://badgen.net/github/last-commit/JsCommunity/node-zone)](https://github.com/JsCommunity/node-zone/commits/master)
 
 > minimal Zone implementation for Node
 
