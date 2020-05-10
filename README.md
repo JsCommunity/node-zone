@@ -8,6 +8,8 @@ This implementation is based on the [experimental `async_hooks` API](https://nod
 
 Work with any asynchronous tasks (IO, timers, promises, external modules, …).
 
+> Warning: Don't work correctly with sync/async generator functions.
+
 ## Install
 
 Installation of the [npm package](https://npmjs.org/package/node-zone):
