@@ -4,7 +4,7 @@
 
 > minimal Zone implementation for Node
 
-This implementation is based on the [experimental AsyncWrap API](https://github.com/nodejs/diagnostics/blob/master/tracing/AsyncWrap/README.md), but it seems to work fine.
+This implementation is based on the [experimental `async_hooks` API](https://nodejs.org/docs/latest/api/async_hooks.html), but it seems to work fine.
 
 Work with any asynchronous tasks (IO, timers, promises, external modules, …).
 
