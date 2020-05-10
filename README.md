@@ -10,6 +10,16 @@ Work with any asynchronous tasks (IO, timers, promises, external modules, …).
 
 > Warning: Don't work correctly with sync/async generator functions.
 
+## What are zones and why use them
+
+Zones are a way to pass contextual data through the call stack without the need to pass them explicitely via arguments.
+
+They are useful in a number of cases, a few example:
+
+- passing a logger
+- passing a user record, for instance for checking permissions in an API implementation
+- passing a lang or theme preference, in case of a UI
+
 ## Install
 
 Installation of the [npm package](https://npmjs.org/package/node-zone):
