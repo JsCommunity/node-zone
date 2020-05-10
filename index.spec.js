@@ -97,4 +97,13 @@ describe("Zone", () => {
       expect(child.getZoneWith("foo")).toBe(null);
     });
   });
+
+  // currently fails
+  it.skip("works with generators", () => {
+    const child = root.fork();
+    const iterator = child.run(function*() {
+      yield Zone.current;
+    });
+    expect(iterator.next().value).toBe(child);
+  });
 });
