@@ -67,6 +67,18 @@ console.log(current.name); // "<root>"
 > properly access the current zone, `Zone.current` will be the root zone
 > instead.
 
+## With Bluebird
+
+If you are using Bluebird promises, you need to enable `async_hooks` support:
+
+```js
+Bluebird.config({
+  asyncHooks: true,
+});
+```
+
+Source: [Bluebird documentation](http://bluebirdjs.com/docs/api/promise.config.html#async-hooks).
+
 ## Contributions
 
 Contributions are _very_ welcomed, either on the documentation or on
