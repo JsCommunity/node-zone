@@ -22,8 +22,6 @@
     "name": "Julien Fontanet",
     "email": "julien.fontanet@isonoe.net"
   },
-  "preferGlobal": false,
-  "bin": {},
   "files": [
     "index.js"
   ],
