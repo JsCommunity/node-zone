@@ -55,7 +55,6 @@
     }
   },
   "jest": {
-    "collectCoverage": true,
     "testEnvironment": "node",
     "testRegex": "\\.spec\\.js$"
   },
