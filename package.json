@@ -5,6 +5,7 @@
   "description": "minimal Zone implementation for Node",
   "keywords": [
     "async",
+    "async_hooks",
     "asynchronous",
     "context",
     "node",
